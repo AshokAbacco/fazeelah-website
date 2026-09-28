@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ivory font-sans text-ink antialiased;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif text-ink;
+    font-optical-sizing: auto;
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    @apply bg-forest text-ivory;
+  }
+  :focus-visible {
+    outline: 2px solid #b95f3a;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  [id] {
+    scroll-margin-top: 96px;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-site px-4 sm:px-6 lg:px-8;
+  }
+  .section-y {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+  /* small uppercase label with a leading rule */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 font-sans text-[11px] font-bold uppercase tracking-[0.24em] text-clay sm:text-xs;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply block h-px w-7 bg-current;
+  }
+  .eyebrow-center::after {
+    content: '';
+    @apply block h-px w-7 bg-current;
+  }
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-6 py-3 font-sans text-sm font-semibold transition-all duration-300 sm:px-7;
+  }
+  .btn-primary {
+    @apply btn bg-forest text-ivory hover:-translate-y-0.5 hover:bg-forest-700 hover:shadow-lift;
+  }
+  .btn-accent {
+    @apply btn bg-clay text-white hover:-translate-y-0.5 hover:bg-clay-dark hover:shadow-lift;
+  }
+  .btn-outline {
+    @apply btn border border-forest/25 bg-white/60 text-forest hover:-translate-y-0.5 hover:border-forest hover:bg-white;
+  }
+  .btn-light {
+    @apply btn bg-ivory text-forest hover:-translate-y-0.5 hover:bg-white;
+  }
+  .btn-ghost-light {
+    @apply btn border border-ivory/30 text-ivory hover:border-ivory hover:bg-ivory/10;
+  }
+  .card {
+    @apply rounded-2xl border border-forest/[0.08] bg-white shadow-card;
+  }
+  .paper-grid {
+    background-image:
+      linear-gradient(rgba(23, 63, 53, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(23, 63, 53, 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .dots-light {
+    background-image: radial-gradient(rgba(251, 249, 244, 0.08) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  /* Arched-window frames. Radii are ratio-matched to the element's
+     aspect ratio so the top is a true semicircle and the bottom corners
+     keep their rounding (avoids CSS radius down-scaling). */
+  .arch {
+    border-radius: 50% 50% 24px 24px / 40% 40% 24px 24px; /* 4:5 */
+  }
+  .arch-2-3 {
+    border-radius: 50% 50% 20px 20px / 33.34% 33.34% 20px 20px;
+  }
+  .arch-3-5 {
+    border-radius: 50% 50% 20px 20px / 30% 30% 20px 20px;
+  }
+  .arch-1-2 {
+    border-radius: 50% 50% 20px 20px / 25% 25% 20px 20px;
+  }
+  .arch-top {
+    border-radius: 50% 50% 0 0 / 40% 40% 0 0; /* 4:5, flat bottom */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
