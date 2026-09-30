@@ -6,10 +6,17 @@ import {
   LuLandmark,
   LuClock,
   LuPhone,
+  LuMapPin,
 } from "react-icons/lu";
 import { FaWhatsapp } from "react-icons/fa";
 import { images } from "../../assets/images.js";
-import { hero, phones, school, whatsapp } from "../../data/schoolData.js";
+import {
+  address,
+  hero,
+  phones,
+  school,
+  whatsapp,
+} from "../../data/schoolData.js";
 import { ease } from "../ui/Reveal.jsx";
 
 const item = {
@@ -137,26 +144,51 @@ export default function HomeHero() {
               </Link>
             </motion.div>
 
-            <motion.p
+            {/* Address + phones */}
+            <motion.div
               variants={item}
-              className="mx-auto mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-x-2 gap-y-1 border-t border-white/20 pt-5 text-sm text-white/85"
+              className="mx-auto mt-6 flex max-w-3xl flex-col items-center gap-2.5 border-t border-white/20 pt-5 text-sm text-white/85"
             >
-              <LuPhone className="h-4 w-4 text-[#F7C3A6]" aria-hidden="true" />
-              Call admissions:
-              {phones.map((p, i) => (
-                <span key={p.href} className="inline-flex items-center gap-2">
-                  {i > 0 && (
-                    <span className="hidden text-white/50 sm:inline">/</span>
-                  )}
-                  <a
-                    href={p.href}
-                    className="font-semibold text-white transition-colors hover:text-[#F7C3A6]"
-                  >
-                    {p.label}
-                  </a>
+              <a
+                href={address.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-start gap-2 text-center leading-relaxed transition-colors hover:text-[#F7C3A6] sm:items-center"
+              >
+                <LuMapPin
+                  className="mt-0.5 h-4 w-4 shrink-0 text-[#F7C3A6] sm:mt-0"
+                  aria-hidden="true"
+                />
+                <span>
+                  <span className="font-semibold text-white">
+                    {address.line1}, {address.line2}, {address.city}
+                  </span>
+                  <span className="text-white/80">
+                    , {address.district}, {address.state} - {address.pin}
+                  </span>
                 </span>
-              ))}
-            </motion.p>
+              </a>
+              <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+                <LuPhone
+                  className="h-4 w-4 text-[#F7C3A6]"
+                  aria-hidden="true"
+                />
+                Call admissions:
+                {phones.map((p, i) => (
+                  <span key={p.href} className="inline-flex items-center gap-2">
+                    {i > 0 && (
+                      <span className="hidden text-white/50 sm:inline">/</span>
+                    )}
+                    <a
+                      href={p.href}
+                      className="font-semibold text-white transition-colors hover:text-[#F7C3A6]"
+                    >
+                      {p.label}
+                    </a>
+                  </span>
+                ))}
+              </p>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>

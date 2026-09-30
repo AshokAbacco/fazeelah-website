@@ -102,8 +102,8 @@ export const emails = [
     primary: true,
   },
   {
-    label: "Admissions@fazeelah.com",
-    href: "mailto:Admissions@fazeelah.com",
+    label: "admissions@fazeelah.com",
+    href: "mailto:admissions@fazeelah.com",
     primary: false,
   },
   {
@@ -164,6 +164,7 @@ export const navigation = [
   { label: "About Us", to: "/about" },
   { label: "Vision", to: "/vision" },
   { label: "Mission", to: "/mission" },
+  { label: "Gallery", to: "/gallery" },
   { label: "Contact Us", to: "/contact" },
 ];
 
@@ -440,14 +441,39 @@ export const gallery = {
   label: "Gallery",
   heading: "Campus Moments",
   description: "Real views from Fazeelah School facilities and campus life.",
+  /**
+   * Gallery tabs. "All" and "Videos" are built-in tabs.
+   * A tab only appears when it has at least one photo/video.
+   */
   categories: [
     "All",
     "Campus",
     "Academics",
     "Sports",
+    "Events",
     "Hostel & Dining",
     "Transport",
+    "Videos",
   ],
+  /**
+   * Cloudinary tags → gallery tab (GALLERY page only).
+   * The admin adds one of these tags (small letters) when uploading.
+   * ⚠️ Without this list the website does not load anything from Cloudinary.
+   */
+  cloudTags: {
+    Campus: "campus",
+    Academics: "academics",
+    Sports: "sports",
+    Events: "events",
+    "Hostel & Dining": "hostel",
+    Transport: "transport",
+  },
+  /**
+   * YouTube videos (free, unlimited — best for longer videos). Example:
+   *   { title: "Annual Day 2026", url: "https://www.youtube.com/watch?v=XXXXXXXXXXX", category: "Events" },
+   */
+  youtubeVideos: [],
+  /** Fixed photos shipped with the website — shown on the HOME page only. */
   items: [
     {
       title: "School Campus",
@@ -898,6 +924,168 @@ export const botTopics = [
 ];
 
 export const botFallback = `I can help with admissions, office timings, hostel & boarding, transport, facilities and contact details. For anything else, our admissions counsellor is happy to help on WhatsApp (${whatsapp.label}) or by phone (${phones[0].label}).`;
+
+/* ------------------------------------------------------------------ */
+/*  Testimonials (home page)                                           */
+/* ------------------------------------------------------------------ */
+
+/**
+ * 👉 Replace each placeholder with REAL feedback from Fazeelah parents,
+ *    collected with their permission. Then set `placeholder: false`
+ *    (or delete the line) on that entry.
+ *
+ *    Entries still marked `placeholder: true` show a small "Sample" tag
+ *    on the website so they are never mistaken for genuine reviews.
+ *    Remove entries you don't need — the carousel adapts to any count.
+ */
+export const testimonials = {
+  label: "Parent Voices",
+  heading: "What Our Families Say",
+  description:
+    "Words from parents who have trusted Fazeelah with their children’s learning and growth.",
+  items: [
+    {
+      quote:
+        "[Placeholder 01] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Nursery student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 02] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of an LKG student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 03] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a UKG student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 04] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class I student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 05] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class II student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 06] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class III student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 07] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class IV student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 08] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class V student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 09] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class VI student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 10] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class VII student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 11] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a hostel student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 12] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a day scholar",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 13] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class II student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 14] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class IV student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 15] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class VI student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 16] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Nursery student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 17] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class III student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 18] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class V student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 19] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a Class VII student",
+      placeholder: true,
+    },
+    {
+      quote:
+        "[Placeholder 20] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
+      name: "[Parent name]",
+      role: "Parent of a hostel student",
+      placeholder: true,
+    },
+  ],
+};
 
 /* Convenience export for image lookups */
 export { images };

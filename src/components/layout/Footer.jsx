@@ -23,6 +23,65 @@ import {
 
 const socialIcon = { Facebook: FaFacebookF, Instagram: FaInstagram };
 
+/**
+ * Website developer credit (bottom of the footer).
+ * Clicking the credit opens the ABACCO TECHNOLOGY website in a new tab.
+ *    (If `url` is emptied, the credit is shown without a link.)
+ * Logo file lives in /public/abacco-logo.png
+ */
+const developer = {
+  name: "ABACCO TECHNOLOGY",
+  url: "https://www.abaccotech.com/",
+  logo: "/abacco-logo.png",
+};
+
+function DeveloperCredit() {
+  const content = (
+    <>
+      <span className="text-ivory/50">Designed &amp; Developed by</span>
+      <span className="inline-flex items-center gap-2">
+        <span className="flex h-7 items-center rounded-md px-1.5 py-1">
+          <img
+            src={developer.logo}
+            alt=""
+            className="h-full w-auto object-contain rounded-[10px]"
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.parentElement.style.display = "none";
+            }}
+          />
+        </span>
+        <span className="font-bold tracking-[0.12em] text-ivory transition-colors group-hover:text-clay-light">
+          {developer.name}
+        </span>
+        {developer.url && (
+          <LuArrowUpRight
+            className="h-3.5 w-3.5 text-ivory/60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-clay-light"
+            aria-hidden="true"
+          />
+        )}
+      </span>
+    </>
+  );
+
+  const className =
+    "group inline-flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1.5 text-xs sm:text-sm";
+
+  return developer.url ? (
+    <a
+      href={developer.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+      aria-label={`Website designed and developed by ${developer.name} (opens in a new tab)`}
+    >
+      {content}
+    </a>
+  ) : (
+    <p className={className}>{content}</p>
+  );
+}
+
 export default function Footer() {
   return (
     <footer
@@ -188,6 +247,13 @@ export default function Footer() {
           <p className="font-serif text-sm italic text-ivory/45">
             Built for excellence in education
           </p>
+        </div>
+      </div>
+
+      {/* Developer credit */}
+      <div className="relative border-t border-ivory/10 bg-black/20">
+        <div className="container-site flex justify-center py-4">
+          <DeveloperCredit />
         </div>
       </div>
     </footer>

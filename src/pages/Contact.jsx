@@ -29,6 +29,10 @@ import {
   whatsapp,
 } from "../data/schoolData.js";
 
+/** Google Maps embed for the school location. */
+const MAP_EMBED_URL =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3863.2499982794566!2d77.74662347610172!3d14.470328986000732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb15b901a8ee3df%3A0x9f1ecfe85b2b5d51!2sFazeelah%20English%20Medium%20School!5e0!3m2!1sen!2sin!4v1790771322691!5m2!1sen!2sin";
+
 export default function Contact() {
   return (
     <>
@@ -251,6 +255,154 @@ export default function Contact() {
       </section>
 
       <AdmissionCTA background="ivory" />
+
+      {/* LOCATION MAP */}
+      <section
+        className="relative overflow-hidden bg-ivory pb-20 pt-4 sm:pb-24"
+        aria-labelledby="map-heading"
+      >
+        <div
+          className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-[#F2B632]/10 blur-3xl"
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-clay/10 blur-3xl"
+          aria-hidden="true"
+        />
+
+        <div className="container-site relative">
+          <SectionHeading
+            id="map-heading"
+            label="Our Location"
+            title="Find Us on the Map"
+            description="Visit our 2-acre campus on Bathalapalli Road, Nagalur Village, Dharmavaram."
+          />
+
+          <Reveal className="mt-12">
+            {/* Gradient border frame */}
+            <div className="rounded-[34px] bg-gradient-to-br from-[#F2B632] via-clay to-forest p-[3px] shadow-[0_40px_80px_-40px_rgba(15,43,36,0.55)]">
+              <div className="overflow-hidden rounded-[31px] bg-white">
+                <div className="grid lg:grid-cols-[380px_1fr]">
+                  {/* Info panel */}
+                  <div className="relative flex flex-col gap-6 bg-forest p-7 text-ivory sm:p-9">
+                    <div
+                      className="absolute inset-0 dots-light"
+                      aria-hidden="true"
+                    />
+                    <div className="relative flex items-center gap-3">
+                      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-ivory p-1.5">
+                        <img
+                          src={images.crest}
+                          alt=""
+                          className="h-full w-auto"
+                        />
+                      </span>
+                      <div>
+                        <p className="font-serif text-xl font-semibold tracking-wide">
+                          FAZEELAH
+                        </p>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-ivory/60">
+                          English Medium School
+                        </p>
+                      </div>
+                    </div>
+
+                    <ul className="relative space-y-4 text-sm">
+                      <li className="flex gap-3">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-ivory/10 text-[#F2B632]">
+                          <LuMapPin className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                        <span className="leading-relaxed text-ivory/85">
+                          {address.full}
+                        </span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-ivory/10 text-[#F2B632]">
+                          <LuPhone className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                        <span className="flex flex-col">
+                          {phones.map((p) => (
+                            <a
+                              key={p.href}
+                              href={p.href}
+                              className="font-semibold text-ivory hover:text-[#F2B632]"
+                            >
+                              {p.label}
+                            </a>
+                          ))}
+                        </span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-ivory/10 text-[#F2B632]">
+                          <LuClock className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                        <span className="text-ivory/85">
+                          {officeHours.summary}
+                          <br />
+                          <span className="text-ivory/60">
+                            {officeHours.closed}
+                          </span>
+                        </span>
+                      </li>
+                    </ul>
+
+                    <div className="relative mt-auto flex flex-col gap-3">
+                      <a
+                        href={address.mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn w-full bg-[#F2B632] font-bold text-[#1C1A17] hover:-translate-y-0.5 hover:bg-[#FFC94D]"
+                      >
+                        <LuNavigation className="h-4 w-4" aria-hidden="true" />{" "}
+                        Get Directions
+                      </a>
+                      <a
+                        href={whatsapp.withMessage(
+                          "Hello, I would like to schedule a campus visit.",
+                        )}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn w-full border border-ivory/30 text-ivory hover:bg-ivory/10"
+                      >
+                        <FaWhatsapp className="h-4 w-4" aria-hidden="true" />{" "}
+                        Book a Campus Visit
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Map */}
+                  <div className="relative min-h-[340px] bg-sage sm:min-h-[420px] lg:min-h-[520px]">
+                    <iframe
+                      src={MAP_EMBED_URL}
+                      title="Map showing the location of Fazeelah English Medium School, Dharmavaram"
+                      className="absolute inset-0 h-full w-full border-0"
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                    />
+                    {/* floating label */}
+                    <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2 rounded-full border border-black/5 bg-white/95 py-1.5 pl-1.5 pr-4 shadow-lg backdrop-blur">
+                      <span className="relative flex h-7 w-7 items-center justify-center rounded-full bg-clay text-white">
+                        <span
+                          className="absolute inset-0 animate-ping rounded-full bg-clay/50"
+                          aria-hidden="true"
+                        />
+                        <LuMapPin
+                          className="relative h-3.5 w-3.5"
+                          aria-hidden="true"
+                        />
+                      </span>
+                      <span className="text-xs font-bold text-ink">
+                        Fazeelah School · Dharmavaram
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </>
   );
 }
