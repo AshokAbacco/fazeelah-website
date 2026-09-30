@@ -8,7 +8,7 @@ const About = lazy(() => import("./pages/About.jsx"));
 const Vision = lazy(() => import("./pages/Vision.jsx"));
 const Mission = lazy(() => import("./pages/Mission.jsx"));
 const Contact = lazy(() => import("./pages/Contact.jsx"));
-const GalleryPage = lazy(() => import("./pages/GalleryPage.jsx"));
+const GalleryPage = lazy(() => import("./pages/Gallerypage.jsx"));
 const NotFound = lazy(() => import("./pages/NotFound.jsx"));
 
 function PageFallback() {
