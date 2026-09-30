@@ -40,11 +40,11 @@ function DeveloperCredit() {
     <>
       <span className="text-ivory/50">Designed &amp; Developed by</span>
       <span className="inline-flex items-center gap-2">
-        <span className="flex h-7 items-center rounded-md px-1.5 py-1">
+        <span className="flex h-7 items-center">
           <img
             src={developer.logo}
             alt=""
-            className="h-full w-auto object-contain rounded-[10px]"
+            className="h-full w-auto object-contain rounded-[19px]"
             loading="lazy"
             onError={(e) => {
               e.currentTarget.parentElement.style.display = "none";
@@ -242,7 +242,7 @@ export default function Footer() {
       <div className="relative border-t border-ivory/10">
         <div className="container-site flex flex-col items-center justify-between gap-2 py-6 text-center sm:flex-row sm:text-left">
           <p className="text-xs text-ivory/55 sm:text-sm">
-            © 2026 {school.name}. All Rights Reserved.
+            © {school.currentYear} {school.name}. All Rights Reserved.
           </p>
           <p className="font-serif text-sm italic text-ivory/45">
             Built for excellence in education

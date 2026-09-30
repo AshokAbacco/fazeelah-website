@@ -49,6 +49,39 @@ import { images } from "../assets/images";
 /*  Core identity & contact                                            */
 /* ------------------------------------------------------------------ */
 
+/* ------------------------------------------------------------------ */
+/*  Admission session — updates automatically every October            */
+/* ------------------------------------------------------------------ */
+
+/**
+ * The admission session rolls over on 1 October each year:
+ *   Oct 2026 – Sep 2027  →  "2026–2027"
+ *   Oct 2027 – Sep 2028  →  "2027–2028"   … and so on.
+ *
+ * ROLLOVER_MONTH: 10 = October (1 = Jan … 12 = Dec).
+ * FIRST_SESSION_YEAR: the site never shows a session earlier than this
+ * (so it reads "2026–2027" today, before the first rollover).
+ */
+const ROLLOVER_MONTH = 10;
+const FIRST_SESSION_YEAR = 2026;
+
+function getAdmissionSession(now = new Date()) {
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1; // 1–12
+  const start = Math.max(
+    month >= ROLLOVER_MONTH ? year : year - 1,
+    FIRST_SESSION_YEAR,
+  );
+  const end = start + 1;
+  return {
+    full: `${start}–${end}`, // e.g. 2026–2027
+    short: `${start}–${String(end).slice(-2)}`, // e.g. 2026–27
+    startYear: start,
+  };
+}
+
+const session = getAdmissionSession();
+
 export const school = {
   name: "FAZEELAH ENGLISH MEDIUM SCHOOL",
   shortName: "Fazeelah School",
@@ -57,8 +90,9 @@ export const school = {
   tagline: "Education With Values",
   footerTagline: "A Foundation for Life-Long Success",
   siteUrl: "https://www.fazeelah.com",
-  admissionYear: "2026–2027",
-  admissionYearShort: "2026–27",
+  admissionYear: session.full, // auto: "2026–2027", then "2027–2028" from Oct 2027…
+  admissionYearShort: session.short, // auto: "2026–27", then "2027–28"…
+  currentYear: new Date().getFullYear(), // used for the © year in the footer
   classesOffered: "Nursery to 7th Class",
   campusSize: "2 acres",
 };
@@ -102,8 +136,8 @@ export const emails = [
     primary: true,
   },
   {
-    label: "admissions@fazeelah.com",
-    href: "mailto:admissions@fazeelah.com",
+    label: "Admissions@fazeelah.com",
+    href: "mailto:Admissions@fazeelah.com",
     primary: false,
   },
   {
