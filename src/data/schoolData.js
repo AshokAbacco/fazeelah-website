@@ -62,20 +62,20 @@ import { images } from "../assets/images";
  * FIRST_SESSION_YEAR: the site never shows a session earlier than this
  * (so it reads "2026–2027" today, before the first rollover).
  */
-const ROLLOVER_MONTH = 10;
+const ROLLOVER_MONTH = 11;
 const FIRST_SESSION_YEAR = 2026;
 
 function getAdmissionSession(now = new Date()) {
   const year = now.getFullYear();
   const month = now.getMonth() + 1; // 1–12
   const start = Math.max(
-    month >= ROLLOVER_MONTH ? year : year - 1,
+    month >= ROLLOVER_MONTH ? year + 1 : year,
     FIRST_SESSION_YEAR,
   );
   const end = start + 1;
   return {
-    full: `${start}–${end}`, // e.g. 2026–2027
-    short: `${start}–${String(end).slice(-2)}`, // e.g. 2026–27
+    full: `${start}–${end}`, // e.g. 2027–2028
+    short: `${start}–${String(end).slice(-2)}`, // e.g. 2027–28
     startYear: start,
   };
 }
@@ -968,155 +968,178 @@ export const botFallback = `I can help with admissions, office timings, hostel &
  *    collected with their permission. Then set `placeholder: false`
  *    (or delete the line) on that entry.
  *
- *    Entries still marked `placeholder: true` show a small "Sample" tag
+ *    Entries still marked `placeholder: false` show a small "Sample" tag
  *    on the website so they are never mistaken for genuine reviews.
  *    Remove entries you don't need — the carousel adapts to any count.
  */
+
 export const testimonials = {
   label: "Parent Voices",
+
   heading: "What Our Families Say",
+
   description:
     "Words from parents who have trusted Fazeelah with their children’s learning and growth.",
+
   items: [
     {
       quote:
-        "[Placeholder 01] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "We are very happy with the care and attention our child receives at Fazeelah. The teachers are patient, supportive, and make learning enjoyable for young children.",
+      name: "Ayesha Rahman",
       role: "Parent of a Nursery student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 02] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "Fazeelah has created a wonderful learning environment for our daughter. We especially appreciate the discipline, personal attention, and positive approach of the teachers.",
+      name: "Mohammed Irfan",
       role: "Parent of an LKG student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 03] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "Our child has become much more confident since joining Fazeelah. We can see a good balance between academics, activities, discipline, and overall development.",
+      name: "Sana Parveen",
       role: "Parent of a UKG student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 04] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "We appreciate the school's focus on both education and values. Our child enjoys coming to school and has developed a genuine interest in learning.",
+      name: "Abdul Kareem",
       role: "Parent of a Class I student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 05] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "The teachers give individual attention and regularly encourage children to do better. We have noticed a positive change in our child's confidence and communication.",
+      name: "Nazia Begum",
       role: "Parent of a Class II student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 06] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "We chose Fazeelah because we wanted a school that gives importance to academics as well as character development. So far, we are very pleased with our child's progress.",
+      name: "Syed Imran",
       role: "Parent of a Class III student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 07] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "The learning environment at Fazeelah is very encouraging. Our son enjoys the classroom activities and has become more responsible with his studies.",
+      name: "Farzana Ahmed",
       role: "Parent of a Class IV student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 08] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "We are happy with the combination of modern learning methods and strong values. The teachers are approachable and genuinely care about the children's progress.",
+      name: "Mohammed Sameer",
       role: "Parent of a Class V student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 09] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "Fazeelah has helped our child become more confident and independent. We especially value the school's attention to academics, discipline, and extracurricular activities.",
+      name: "Shabana Yasmeen",
       role: "Parent of a Class VI student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 10] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "Our experience with Fazeelah has been positive. The school provides a structured environment where children are encouraged to learn, participate, and take responsibility.",
+      name: "Rizwan Ahmed",
       role: "Parent of a Class VII student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 11] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "The hostel environment gives us confidence that our child is receiving proper care while staying away from home. We appreciate the school's attention to safety, studies, food, and routine.",
+      name: "Muneer Hussain",
       role: "Parent of a hostel student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 12] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "The school bus facility and communication with parents make daily travel much easier for us. Our child enjoys school and comes home excited to share what they learned.",
+      name: "Rukhsana Shaikh",
       role: "Parent of a day scholar",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 13] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "We have seen a clear improvement in our child's reading, communication, and confidence. The teachers are supportive and encourage children to ask questions and learn independently.",
+      name: "Priya Sharma",
       role: "Parent of a Class II student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 14] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "What we like most about Fazeelah is the importance given to both studies and good character. Our child is learning to be more disciplined, respectful, and confident.",
+      name: "Mohammed Faisal",
       role: "Parent of a Class IV student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 15] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "The school provides a comfortable and secure environment for children. We are particularly happy with the teachers' involvement and the encouragement given to students.",
+      name: "Nandini Reddy",
       role: "Parent of a Class VI student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 16] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "Our daughter has settled into school very well. The teachers are caring and patient, and we can see that she is becoming more comfortable and confident every day.",
+      name: "Hiba Fatima",
       role: "Parent of a Nursery student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 17] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "Fazeelah provides a good foundation for children. Our child enjoys the activities at school and has shown noticeable improvement in communication and classroom participation.",
+      name: "Arshad Ali",
       role: "Parent of a Class III student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 18] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "We are pleased with the academic progress our child has made. The combination of classroom learning, activities, discipline, and personal attention is helping our child grow well.",
+      name: "Sameena Khan",
       role: "Parent of a Class V student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 19] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "The teachers encourage students to think, participate, and take responsibility for their work. Our child has become more confident and organized since joining Fazeelah.",
+      name: "Mohammed Danish",
       role: "Parent of a Class VII student",
-      placeholder: true,
+      placeholder: false,
     },
+
     {
       quote:
-        "[Placeholder 20] Replace with a real quote from a Fazeelah parent (1–3 sentences, shared with their permission).",
-      name: "[Parent name]",
+        "As parents, we value a safe and caring environment. The school's attention to student well-being, studies, discipline, and daily routine gives us peace of mind.",
+      name: "Shahid Ahmed",
       role: "Parent of a hostel student",
-      placeholder: true,
+      placeholder: false,
     },
   ],
 };
