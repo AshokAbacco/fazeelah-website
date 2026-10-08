@@ -5,6 +5,7 @@ import {
   LuMail,
   LuArrowUpRight,
   LuSmartphone,
+  LuShieldCheck,
 } from "react-icons/lu";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import Logo from "../ui/Logo.jsx";
@@ -111,6 +112,13 @@ export default function Footer() {
                 Stay connected with Fazeelah — download the {schoolApp.name} app
                 on Google Play.
               </p>
+              <Link
+                to="/privacy"
+                className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-clay-light underline-offset-4 hover:text-ivory hover:underline"
+              >
+                <LuShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
+                App &amp; data privacy policy
+              </Link>
             </div>
           </div>
           <PlayStoreBadge />
@@ -173,6 +181,18 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                to="/privacy"
+                className="group inline-flex items-center gap-1.5 text-[0.95rem] text-ivory/75 transition-colors hover:text-ivory"
+              >
+                Privacy Policy
+                <LuArrowUpRight
+                  className="h-3.5 w-3.5 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100"
+                  aria-hidden="true"
+                />
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -244,9 +264,20 @@ export default function Footer() {
           <p className="text-xs text-ivory/55 sm:text-sm">
             © {school.currentYear} {school.name}. All Rights Reserved.
           </p>
-          <p className="font-serif text-sm italic text-ivory/45">
-            Built for excellence in education
-          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+            <Link
+              to="/privacy"
+              className="text-xs font-semibold text-ivory/70 underline-offset-4 transition-colors hover:text-clay-light hover:underline sm:text-sm"
+            >
+              Privacy Policy
+            </Link>
+            <span className="hidden text-ivory/25 sm:inline" aria-hidden="true">
+              |
+            </span>
+            <p className="font-serif text-sm italic text-ivory/45">
+              Built for excellence in education
+            </p>
+          </div>
         </div>
       </div>
 

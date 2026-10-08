@@ -9,6 +9,7 @@ const Vision = lazy(() => import("./pages/Vision.jsx"));
 const Mission = lazy(() => import("./pages/Mission.jsx"));
 const Contact = lazy(() => import("./pages/Contact.jsx"));
 const GalleryPage = lazy(() => import("./pages/Gallerypage.jsx"));
+const Privacy = lazy(() => import("./pages/Privacy.jsx"));
 const NotFound = lazy(() => import("./pages/NotFound.jsx"));
 
 function PageFallback() {
@@ -70,6 +71,18 @@ export default function App() {
                 <Contact />
               </Suspense>
             }
+          />
+          <Route
+            path="privacy"
+            element={
+              <Suspense fallback={<PageFallback />}>
+                <Privacy />
+              </Suspense>
+            }
+          />
+          <Route
+            path="privacy-policy"
+            element={<Navigate to="/privacy" replace />}
           />
           <Route
             path="*"
