@@ -24,7 +24,7 @@ function GooglePlayIcon({ className = "" }) {
 export default function PlayStoreBadge({ className = "" }) {
   const url =
     schoolApp.playStoreUrl?.trim() ||
-    `https://play.google.com/store/search?q=${encodeURIComponent(schoolApp.name)}&c=apps`;
+    `https://play.google.com/store/apps/details?id=com.fazeelah.edu`;
 
   return (
     <a
