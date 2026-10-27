@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { LuQuote } from "react-icons/lu";
 import { testimonials } from "../../data/schoolData.js";
@@ -13,6 +14,87 @@ function initials(name) {
     .map((w) => w[0])
     .join("")
     .toUpperCase();
+}
+
+/* ------------------------------------------------------------------ */
+/*  Student photos                                                     */
+/*  Any of these work for `photo` in schoolData.js:                    */
+/*   • "ayaan.jpg"                  → file in src/assets/testimonials/  */
+/*   • "/testimonials/ayaan.jpg"    → file in public/testimonials/      */
+/*   • "https://res.cloudinary.com/…" (any full image URL)             */
+/*   • an imported image:  import ayaan from "../assets/…/ayaan.jpg"   */
+/* ------------------------------------------------------------------ */
+
+// Every image inside src/assets/testimonials/ is bundled automatically
+const bundledPhotos = Object.fromEntries(
+  Object.entries(
+    import.meta.glob(
+      "../../assets/testimonials/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP}",
+      { eager: true, query: "?url", import: "default" },
+    ),
+  ).map(([path, url]) => [path.split("/").pop().toLowerCase(), url]),
+);
+
+function resolvePhoto(t) {
+  const photo = t.photo || t.image || t.img;
+  if (!photo) return null;
+  if (typeof photo !== "string") return photo; // imported image module
+  const value = photo.trim();
+  if (/^(https?:|data:|blob:)/i.test(value)) return value;
+  // Same file name inside src/assets/testimonials/ (also handles "src/assets/testimonials/x.jpg")
+  const fileName = value.split("/").pop().toLowerCase();
+  if (bundledPhotos[fileName]) return bundledPhotos[fileName];
+  // Otherwise treat it as a file in /public
+  const publicPath = value.replace(/^\.?\/?(public\/)?/, "/");
+  try {
+    return encodeURI(decodeURI(publicPath)); // allows spaces in file names
+  } catch {
+    return publicPath;
+  }
+}
+
+/**
+ * Round avatar: shows the student's photo when `photo` is set in schoolData.js,
+ * otherwise (or if the image fails to load) the gold initials.
+ */
+function Avatar({ t, dark }) {
+  const [failed, setFailed] = useState(false);
+  const src = resolvePhoto(t);
+  const ring = dark
+    ? "ring-2 ring-[#F2B632]/50"
+    : "ring-2 ring-white shadow-[0_4px_12px_-4px_rgba(0,0,0,0.35)]";
+
+  if (src && !failed) {
+    return (
+      <img
+        src={src}
+        alt={`Photo of ${t.student || t.name}`}
+        className={`h-14 w-14 shrink-0 rounded-full object-cover ${ring}`}
+        style={
+          t.photoPosition ? { objectPosition: t.photoPosition } : undefined
+        }
+        loading="lazy"
+        decoding="async"
+        onError={() => {
+          if (import.meta.env.DEV)
+            console.warn(
+              `[Testimonials] Photo not found for "${t.name}": ${src}. Put it in src/assets/testimonials/ or public/testimonials/.`,
+            );
+          setFailed(true);
+        }}
+      />
+    );
+  }
+  return (
+    <span
+      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#18221F] font-serif text-base text-[#F2B632] ${
+        dark ? "ring-2 ring-[#F2B632]/50" : ""
+      }`}
+      aria-hidden="true"
+    >
+      {initials(t.name)}
+    </span>
+  );
 }
 
 /**
@@ -66,14 +148,7 @@ function TestimonialCard({ t, dark }) {
           dark ? "border-white/15" : "border-black/[0.06]"
         }`}
       >
-        <span
-          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#18221F] font-serif text-base text-[#F2B632] ${
-            dark ? "ring-2 ring-[#F2B632]/50" : ""
-          }`}
-          aria-hidden="true"
-        >
-          {initials(t.name)}
-        </span>
+        <Avatar t={t} dark={dark} />
         <span className="min-w-0">
           <span
             className={`block truncate font-semibold ${dark ? "text-white" : "text-[#18221F]"}`}
