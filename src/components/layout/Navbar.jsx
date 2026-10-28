@@ -21,6 +21,11 @@ import {
   whatsapp,
 } from "../../data/schoolData.js";
 
+/**
+ * Full menu shows from 1024px wide (14" laptops, including zoomed displays).
+ * Below 1024px (tablets and phones) the hamburger + slide-in drawer is used.
+ * Between 1024px and 1280px the links and the "Admissions Open" pill are slightly smaller so everything fits on one line.
+ */
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -121,19 +126,19 @@ export default function Navbar() {
         }`}
       >
         <div
-          className={`container-site flex items-center justify-between transition-all duration-300 ${scrolled ? "h-[68px]" : "h-[76px]"}`}
+          className={`container-site flex items-center justify-between gap-3 transition-all duration-300 ${scrolled ? "h-[68px]" : "h-[76px]"}`}
         >
           <Logo />
 
-          <nav aria-label="Primary" className="hidden xl:block">
-            <ul className="flex items-center gap-0.5 xl:gap-1">
+          <nav aria-label="Primary" className="hidden lg:block">
+            <ul className="flex items-center gap-0 xl:gap-1">
               {navigation.map((item) => (
                 <li key={item.to}>
                   <NavLink
                     to={item.to}
                     end={item.to === "/"}
                     className={({ isActive }) =>
-                      `relative block whitespace-nowrap rounded-full px-3 py-2 text-[0.9rem] font-semibold 2xl:px-4 2xl:text-[0.92rem] transition-colors ${
+                      `relative block whitespace-nowrap rounded-full px-2 py-2 text-[0.82rem] font-semibold xl:px-3 xl:text-[0.9rem] 2xl:px-4 2xl:text-[0.92rem] transition-colors ${
                         isActive
                           ? "text-forest"
                           : "text-ink-soft hover:text-forest"
@@ -167,7 +172,7 @@ export default function Navbar() {
               href={whatsapp.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden items-center gap-1.5 whitespace-nowrap rounded-full border border-clay px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-clay transition-colors hover:bg-clay hover:text-white sm:inline-flex"
+              className="hidden items-center gap-1.5 whitespace-nowrap rounded-full border border-clay px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-clay lg:px-3 lg:text-[0.68rem] lg:tracking-[0.08em] xl:px-4 xl:text-xs xl:tracking-[0.12em] transition-colors hover:bg-clay hover:text-white sm:inline-flex"
             >
               Admissions Open
               <LuArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -176,7 +181,7 @@ export default function Navbar() {
               ref={menuBtnRef}
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-sage text-forest transition-colors hover:bg-forest hover:text-ivory xl:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-sage text-forest transition-colors hover:bg-forest hover:text-ivory lg:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"
@@ -196,7 +201,7 @@ export default function Navbar() {
           {open && (
             <>
               <motion.div
-                className="fixed inset-0 z-[65] bg-forest-950/50 backdrop-blur-sm xl:hidden"
+                className="fixed inset-0 z-[65] bg-forest-950/50 backdrop-blur-sm lg:hidden"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -209,7 +214,7 @@ export default function Navbar() {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Site menu"
-                className="fixed inset-y-0 right-0 z-[70] flex w-[86%] max-w-sm flex-col overflow-y-auto bg-ivory shadow-2xl xl:hidden"
+                className="fixed inset-y-0 right-0 z-[70] flex w-[86%] max-w-sm flex-col overflow-y-auto bg-ivory shadow-2xl lg:hidden"
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
