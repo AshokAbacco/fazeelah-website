@@ -10,6 +10,7 @@ const Mission = lazy(() => import("./pages/Mission.jsx"));
 const Contact = lazy(() => import("./pages/Contact.jsx"));
 const GalleryPage = lazy(() => import("./pages/Gallerypage.jsx"));
 const Privacy = lazy(() => import("./pages/Privacy.jsx"));
+const TestimonialsPage = lazy(() => import("./pages/Testimonials.jsx"));
 const NotFound = lazy(() => import("./pages/NotFound.jsx"));
 
 function PageFallback() {
@@ -61,6 +62,14 @@ export default function App() {
             element={
               <Suspense fallback={<PageFallback />}>
                 <GalleryPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="testimonials"
+            element={
+              <Suspense fallback={<PageFallback />}>
+                <TestimonialsPage />
               </Suspense>
             }
           />

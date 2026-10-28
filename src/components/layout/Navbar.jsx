@@ -133,7 +133,7 @@ export default function Navbar() {
                     to={item.to}
                     end={item.to === "/"}
                     className={({ isActive }) =>
-                      `relative block whitespace-nowrap rounded-full px-3.5 py-2 text-[0.92rem] font-semibold 2xl:px-4 transition-colors ${
+                      `relative block whitespace-nowrap rounded-full px-3 py-2 text-[0.9rem] font-semibold 2xl:px-4 2xl:text-[0.92rem] transition-colors ${
                         isActive
                           ? "text-forest"
                           : "text-ink-soft hover:text-forest"
